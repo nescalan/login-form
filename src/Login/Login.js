@@ -6,7 +6,7 @@ import { SignIn } from "../SignIn/SignIn";
 import "./Login.css";
 
 function Login() {
-  // State Definition
+  // BUTTON STATE DEFINITION
   const [btnState, setBtnState] = useState(false);
 
   // GUI BEHAIVOR
@@ -34,15 +34,8 @@ function Login() {
         className={`container ${btnState ? "right-panel-active" : ""}`}
         id="container"
       >
-        <CreateAccount
-          btnState={btnState}
-          setBtnState={setBtnState}
-          signUpButton={signUpButton}
-        />
-
+        <CreateAccount />
         <SignIn />
-
-        {/* ********************** SIGNIN FORM ****************************************** */}
 
         <div className="overlay-container">
           <div className="overlay">

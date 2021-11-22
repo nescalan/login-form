@@ -1,7 +1,22 @@
-import React from "react";
+import React, { useState } from "react";
 import { useForm } from "react-hook-form";
 
 function SignIn() {
+  // Initial State
+  const intinalUsers = [
+    {
+      email: "nel@mail.com",
+      password: "OcramoBSDp",
+    },
+    {
+      email: "nathy@mail.com",
+      password: "4u3p7px6",
+    },
+  ];
+
+  // USERS STATE
+  const [users, setUser] = useState(intinalUsers);
+
   // REACT HOOK FORM VALIDATION
   const {
     register,
@@ -12,7 +27,13 @@ function SignIn() {
   // HANDLE ONSUBMIT
   const onSubmit = (data, event) => {
     console.log(data);
+    setUser([...users, data]);
     alert("You are logged");
+    console.log(
+      users.map((user) => {
+        return user;
+      })
+    );
 
     // Clean Input Fields
     event.target.reset();
