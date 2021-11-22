@@ -23,6 +23,11 @@ function Login() {
     setBtnState(false);
   };
 
+  // HANDLE ONSUBMIT
+  const onSubmit = (data) => {
+    console.log(data);
+  };
+
   return (
     <Fragment>
       <div
@@ -30,7 +35,7 @@ function Login() {
         id="container"
       >
         <div className="form-container sign-up-container">
-          <form action="#">
+          <form onSubmit={handleSubmit(onSubmit)}>
             <h1>Create Account</h1>
             <div className="social-container">
               <a href="#" className="social">
@@ -44,8 +49,20 @@ function Login() {
               </a>
             </div>
             <span>or use your email for registration</span>
-            <input type="text" placeholder="Name" {...register("name")} />
+
+            {/*  NAME */}
+            <input
+              type="text"
+              placeholder="Name"
+              {...register("name", { required: true })}
+            />
+            {/* errors will return when field validation fails  */}
+            {errors.name && <span> This field is required</span>}
+
+            {/* EMAIL */}
             <input type="email" placeholder="Email" />
+
+            {/* PASSWORD */}
             <input type="password" placeholder="Password" />
             <button>Sign Up</button>
           </form>
