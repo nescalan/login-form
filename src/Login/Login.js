@@ -1,14 +1,20 @@
-import React, { useState } from "react";
+import React, { Fragment, useState } from "react";
+import { useForm } from "react-hook-form";
 
-import { SignIn } from "../SignIn/SignIn";
 import "./Login.css";
 
 function Login() {
-  const [btnState, setBtnState] = useState(false);
+  // State Definition
+  const [btnState, setBtnState] = useState(true);
 
-  // GUI Behaivor
-  const container = document.getElementById("container");
+  // REACT HOOK FORM VALIDATION
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm();
 
+  // GUI BEHAIVOR
   const signUpButton = () => {
     setBtnState(true);
   };
@@ -18,7 +24,7 @@ function Login() {
   };
 
   return (
-    <React.Fragment>
+    <Fragment>
       <div
         className={`container ${btnState ? "right-panel-active" : ""}`}
         id="container"
@@ -38,7 +44,7 @@ function Login() {
               </a>
             </div>
             <span>or use your email for registration</span>
-            <input type="text" placeholder="Name" />
+            <input type="text" placeholder="Name" {...register("name")} />
             <input type="email" placeholder="Email" />
             <input type="password" placeholder="Password" />
             <button>Sign Up</button>
@@ -70,7 +76,8 @@ function Login() {
             <div className="overlay-panel overlay-left">
               <h1>Welcome Back!</h1>
               <p>
-                To keep connected with us please login with your personal info
+                To keep connected with us please loginLoginin with your personal
+                info
               </p>
               <button className="ghost" id="signIn" onClick={signInButton}>
                 Sign In
@@ -86,7 +93,7 @@ function Login() {
           </div>
         </div>
       </div>
-    </React.Fragment>
+    </Fragment>
   );
 }
 
